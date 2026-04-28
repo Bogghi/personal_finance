@@ -47,7 +47,7 @@ class _NavigationControllerState extends State<NavigationController> {
                       color: Theme.of(context).colorScheme.primaryContainer
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                       child: Column(
                         spacing: 5,
                         children: [
@@ -80,8 +80,8 @@ class _NavigationControllerState extends State<NavigationController> {
                   child: PageView(
                     controller: _pageController,
                     children: [
-                      HomePage(title: 'ciao'),
-                      HomePage(title: 'ciao 2')
+                      HomePage(),
+                      HomePage(),
                     ],
                   ),
                 ),
