@@ -14,6 +14,7 @@ class NavigationController extends StatefulWidget {
 class _NavigationControllerState extends State<NavigationController> {
   late PageController _pageController;
   int pageIndex = 0;
+  final double? sideHeight = 35;
 
   @override
   void initState() {
@@ -36,56 +37,51 @@ class _NavigationControllerState extends State<NavigationController> {
             constraints: BoxConstraints(
               maxWidth: constraints.maxWidth,
             ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 50,
-                  child: Container(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Theme.of(context).colorScheme.primaryContainer,
+              child: Column(
+                children: [
+                  SizedBox(
                     width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer
+                    height: sideHeight,
+                    child: Center(child: Text("Top bar")),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: sideHeight,
+                          height: double.infinity,
+                          child: Column(
+                            children: [
+                              SidebarIconButton(
+                                onPressed: () {
+                                },
+                                icon: Icons.settings,
+                                selected: pageIndex == 1,
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.surface,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Center(child: Text("Im the pageivew")),
+                            ),
+                          )
+                        ),
+                      ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Column(
-                        spacing: 5,
-                        children: [
-                          SidebarIconButton(
-                            onPressed: () {
-                              _pageController.jumpToPage(0);
-                              setState(() {
-                                pageIndex = 0;
-                              });
-                            },
-                            icon: Icons.home,
-                            selected: pageIndex == 0,
-                          ),
-                          SidebarIconButton(
-                            onPressed: () {
-                              _pageController.jumpToPage(1);
-                              setState(() {
-                                pageIndex = 1;
-                              });
-                            },
-                            icon: Icons.settings,
-                            selected: pageIndex == 1,
-                          ),
-                        ],
-                      ),
-                    )
                   ),
-                ),
-                Expanded(
-                  child: PageView(
-                    controller: _pageController,
-                    children: [
-                      HomePage(),
-                      HomePage(),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
