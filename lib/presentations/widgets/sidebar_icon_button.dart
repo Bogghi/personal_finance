@@ -21,6 +21,9 @@ class SidebarIconButton extends StatelessWidget {
         color: selected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.surface
       ),
       style: IconButton.styleFrom(
+        padding: EdgeInsets.zero, // Remove default padding
+        minimumSize: Size(30, 30), // Set minimum size to match your sidebar width
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Allow the button to be smaller than default
         backgroundColor: selected ? Theme.of(context).colorScheme.primary : Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

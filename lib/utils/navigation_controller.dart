@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:personal_finance/presentations/widgets/sidebar_icon_button.dart';
 
-import 'package:personal_finance/presentations/pages/home_page.dart';
+import 'package:personal_finance/presentations/pages/transactions.dart';
 
 class NavigationController extends StatefulWidget {
   const NavigationController({super.key});
@@ -46,23 +46,34 @@ class _NavigationControllerState extends State<NavigationController> {
                   SizedBox(
                     width: double.infinity,
                     height: sideHeight,
-                    child: Center(child: Text("Top bar")),
+                    child: Center(child: Text("LEDGER")),
                   ),
                   Expanded(
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
                           width: sideHeight,
                           height: double.infinity,
-                          child: Column(
-                            children: [
-                              SidebarIconButton(
-                                onPressed: () {
-                                },
-                                icon: Icons.settings,
-                                selected: pageIndex == 1,
-                              )
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              spacing: 5,
+                              children: [
+                                SidebarIconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      pageIndex = 0;
+                                    });
+                                    _pageController.jumpToPage(0);
+                                  },
+                                  icon: Icons.list_rounded,
+                                  selected: pageIndex == 0,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Expanded(
@@ -73,7 +84,14 @@ class _NavigationControllerState extends State<NavigationController> {
                                 color: Theme.of(context).colorScheme.surface,
                                 borderRadius: BorderRadius.circular(10)
                               ),
-                              child: Center(child: Text("Im the pageivew")),
+                              child: Expanded(
+                                child: PageView(
+                                  controller: _pageController,
+                                  children: [
+                                    Transactions(),
+                                  ],
+                                ),
+                              ),
                             ),
                           )
                         ),
