@@ -69,7 +69,7 @@ class _NavigationControllerState extends State<NavigationController> {
                                     });
                                     _pageController.jumpToPage(0);
                                   },
-                                  icon: Icons.list_rounded,
+                                  icon: Icons.keyboard_command_key_outlined,
                                   selected: pageIndex == 0,
                                 ),
                               ],
@@ -84,13 +84,11 @@ class _NavigationControllerState extends State<NavigationController> {
                                 color: Theme.of(context).colorScheme.surface,
                                 borderRadius: BorderRadius.circular(10)
                               ),
-                              child: Expanded(
-                                child: PageView(
-                                  controller: _pageController,
-                                  children: [
-                                    Transactions(),
-                                  ],
-                                ),
+                              child: PageView(
+                                controller: _pageController,
+                                children: [
+                                  Transactions(),
+                                ],
                               ),
                             ),
                           )
